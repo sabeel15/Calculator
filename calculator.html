@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculator</title>
+    <style>
+      body{
+        background-color: black;
+      }
+      .gray-button, .orange-button{
+        border: none;
+        width: 60px;
+        height: 60px;
+        color: white;
+        font-size: 26px;
+        border-radius: 60px;
+      }
+      .gray-button{
+        background-color: rgb(51,51,51);
+        margin-right: 5px;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8);
+      }
+      .orange-button{
+        background-color: rgb(254,160,10);
+      }
+      .clear-button{
+        font-size: 17px;
+      }
+      .display-calculation{
+        color: white;
+        font-size: 45px;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-top: 15px;
+        margin-bottom: 25px;
+        height: 40px;
+      }
+      .title{
+        color: rgb(241, 177, 72);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+        margin-bottom: 0px;
+        margin-top: 120px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .calculator{
+        margin: auto;
+        text-align: center;
+        width: 300px;
+        border: solid ;
+        box-shadow: 0px 0px 12px orange;
+        margin-top: 20px;
+        border-radius: 20px;
+        padding-bottom: 10px;
+      }
+      .display-div{
+        text-align: left;
+        width: 250px;
+        padding-left: 20px;
+        margin-top: 40px;
+      }
+      .div-title{
+        margin: auto;
+        text-align: center;
+        margin-bottom: none;
+        box-shadow: 0px 0px 12px orange;
+        width: 300px;
+        border-radius: 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="div-title"><p class="title">CALCULATOR</p></div>
+    <div class="calculator">
+    <div class="display-div"><p class="display-calculation"></p></div>
+    <p>
+      <button class="gray-button" onclick="updateCalculator('1')">1</button>
+      <button class="gray-button" onclick="updateCalculator('2')">2</button>
+      <button class="gray-button" onclick="updateCalculator('3')">3</button>
+      <button class="orange-button" onclick="updateCalculator('+')">+</button>
+    </p>
+    <p>
+      <button class="gray-button" onclick="updateCalculator('4')">4</button>
+      <button class="gray-button" onclick="updateCalculator('5')">5</button>
+      <button class="gray-button" onclick="updateCalculator('6')">6</button>
+      <button class="orange-button" onclick="updateCalculator('-')">-</button>
+    </p>
+    <p>
+      <button class="gray-button" onclick="updateCalculator('7')">7</button>
+      <button class="gray-button" onclick="updateCalculator('8')">8</button>
+      <button class="gray-button" onclick="updateCalculator('9')">9</button>
+      <button class="orange-button" onclick="updateCalculator('*')">*</button>
+    </p>
+    <p>
+      <button class="gray-button" onclick="updateCalculator('0')">0</button>
+      <button class="gray-button" onclick="updateCalculator('.')">.</button>
+
+      <button class="gray-button" onclick="
+      calculation = eval(calculation); displayCalculation();
+      localStorage.setItem('calculation',calculation);
+      ">=</button>
+      <button class="orange-button" onclick="updateCalculator('/')">/</button>
+    </p>
+
+    <button class="gray-button clear-button" onclick="
+    calculation = ''; displayCalculation();
+    localStorage.removeItem('calculation');
+    //document.querySelector('.display-calculation').innerHTML = '';
+    ">Clear</button>
+    </div>
+    
+
+    <script>
+
+      let calculation = localStorage.getItem('calculation') ||'';
+      displayCalculation();
+      function updateCalculator(value){
+        calculation +=value;
+        displayCalculation();
+        localStorage.setItem('calculation', calculation);
+      }
+
+      function displayCalculation(){
+        document.querySelector('.display-calculation').innerHTML = calculation;
+      }
+    </script>
+  </body>
+</html>
